@@ -11,9 +11,8 @@ angular
         var isString = angular.isString,
             body = $document.find('body'),
             defaultOptions = {
-                style: {
-                    'position': 'fixed'
-                }
+                style: {},
+                'class': ''
             };
 
         /**
@@ -38,6 +37,7 @@ angular
 
             this.element = angular.element(wrapTemplate(opt.templateUrl));
             this.element.css(opt.style);
+            this.element.addClass(opt.class);
 
 
             this.$scope = opt.scope || $rootScope.$new();
