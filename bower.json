@@ -1,0 +1,22 @@
+{
+  "name": "angular-popup",
+  "version": "0.0.1",
+  "homepage": "https://github.com/zxcabs/angular-popup",
+  "authors": [
+    "Evgeny Reznichenko <kusakyky@gmail.com>"
+  ],
+  "description": "Angular popup",
+  "main": "src/popup.js",
+  "keywords": [
+    "angular",
+    "popup"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
