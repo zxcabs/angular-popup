@@ -12,7 +12,19 @@ angular
             body = $document.find('body'),
             defaultOptions = {
                 style: {},
-                'class': ''
+                'class': '',
+                modalOverlayStyle: {
+                    'background-color': '#000000',
+                    'opacity': '0.6',
+                    'z-index': '100',
+                    'position': 'fixed',
+                    'top': '0',
+                    'left': '0',
+                    'width': '100%',
+                    'height': '100%',
+                    'overflow': 'none'
+                },
+                modal: false
             };
 
         /**
@@ -20,8 +32,20 @@ angular
          * @param url урл к шаблону
          * @returns {string}
          */
-        function wrapTemplate(url) {
-            return ['<div><div', ' ng-include="\'', url,'\'"></div></div>'].join('');
+        function wrapTemplate(url, opt) {
+            var modalOverlay = opt.modal? angular.element('<div></div>'): '';
+
+            if (modalOverlay) {
+                if (opt.modalOverlayClass) {
+                    modalOverlay.addClass(opt.modalOverlayClass);
+                } else {
+                    modalOverlay.css(opt.modalOverlayStyle);
+                }
+
+                modalOverlay = modalOverlay[0].outerHTML;
+            }
+
+            return ['<div>', modalOverlay, '<div', ' ng-include="\'', url,'\'"></div></div>'].join('');
         }
 
         function Popup(opt) {
@@ -35,7 +59,7 @@ angular
 
             opt = angular.extend({}, defaultOptions, opt);
 
-            this.element = angular.element(wrapTemplate(opt.templateUrl));
+            this.element = angular.element(wrapTemplate(opt.templateUrl, opt));
             this.element.css(opt.style);
             this.element.addClass(opt.class);
 

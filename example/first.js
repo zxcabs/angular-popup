@@ -15,7 +15,8 @@ angular
                 templateUrl: 'popup.html',
                 data: {
                     message: 'Hello! my super duper popup!'
-                }
+                },
+                modal: true
             });
         };
 
